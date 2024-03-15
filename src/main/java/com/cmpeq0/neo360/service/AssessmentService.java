@@ -103,6 +103,7 @@ public class AssessmentService {
         assessmentRepository.deleteAll();
         voteRepository.deleteAll();
         workerRepository.deleteAll();
+        edgeRepository.deleteAll();
 
         //previous assessment
         Survey assessment = new Survey();
@@ -447,6 +448,11 @@ public class AssessmentService {
         edgeRepository.save(Edge.builder().source(workerSasha).target(workerVlad).build());
 
         edgeRepository.save(Edge.builder().source(workerMisha).target(workerVlad).build());
+
+        assessment = new Survey();
+        assessment.setStartDate(LocalDateTime.now());
+        assessment.setEndDate(LocalDateTime.now().plusDays(10));
+        currentAssessment = assessmentRepository.save(assessment);
     }
 
 }
