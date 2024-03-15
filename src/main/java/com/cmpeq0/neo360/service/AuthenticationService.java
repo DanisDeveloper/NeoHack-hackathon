@@ -1,5 +1,7 @@
-package com.cmpeq0.neo360.auth;
+package com.cmpeq0.neo360.service;
 
+import com.cmpeq0.neo360.view.auth.AuthenticationRequest;
+import com.cmpeq0.neo360.view.auth.AuthenticationResponse;
 import com.cmpeq0.neo360.dao.WorkerRepository;
 import com.cmpeq0.neo360.model.Worker;
 import lombok.RequiredArgsConstructor;

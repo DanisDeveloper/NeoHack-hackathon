@@ -1,9 +1,12 @@
-package com.cmpeq0.neo360.worker;
+package com.cmpeq0.neo360.service;
 
 import com.cmpeq0.neo360.dao.PositionRepository;
 import com.cmpeq0.neo360.dao.WorkerRepository;
 import com.cmpeq0.neo360.model.Position;
 import com.cmpeq0.neo360.model.Worker;
+import com.cmpeq0.neo360.view.worker.DeleteWorkerRequest;
+import com.cmpeq0.neo360.view.worker.WorkerDataRequest;
+import com.cmpeq0.neo360.view.worker.WorkerView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

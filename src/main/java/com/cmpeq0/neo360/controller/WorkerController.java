@@ -1,5 +1,9 @@
-package com.cmpeq0.neo360.worker;
+package com.cmpeq0.neo360.controller;
 
+import com.cmpeq0.neo360.view.worker.DeleteWorkerRequest;
+import com.cmpeq0.neo360.view.worker.WorkerDataRequest;
+import com.cmpeq0.neo360.service.WorkerService;
+import com.cmpeq0.neo360.view.worker.WorkerView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.cmpeq0.neo360.vote;
+package com.cmpeq0.neo360.view.vote;
 
 import lombok.Builder;
 import lombok.Data;

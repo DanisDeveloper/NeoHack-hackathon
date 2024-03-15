@@ -1,6 +1,5 @@
-package com.cmpeq0.neo360.assessment;
+package com.cmpeq0.neo360.view.assessment;
 
-import com.cmpeq0.neo360.model.SkillRecord;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

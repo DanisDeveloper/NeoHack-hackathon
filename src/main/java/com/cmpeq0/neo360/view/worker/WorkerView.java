@@ -1,4 +1,4 @@
-package com.cmpeq0.neo360.worker;
+package com.cmpeq0.neo360.view.worker;
 
 
 import lombok.Builder;

@@ -1,8 +1,9 @@
-package com.cmpeq0.neo360.vote;
+package com.cmpeq0.neo360.controller;
 
+import com.cmpeq0.neo360.service.VoteService;
+import com.cmpeq0.neo360.view.vote.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,10 +1,14 @@
-package com.cmpeq0.neo360.vote;
+package com.cmpeq0.neo360.service;
 
 import com.cmpeq0.neo360.dao.SkillRepository;
 import com.cmpeq0.neo360.dao.VoteRepository;
 import com.cmpeq0.neo360.dao.WorkerRepository;
-import com.cmpeq0.neo360.model.*;
-import com.cmpeq0.neo360.worker.WorkerView;
+import com.cmpeq0.neo360.model.Skill;
+import com.cmpeq0.neo360.model.SkillRequirement;
+import com.cmpeq0.neo360.model.Vote;
+import com.cmpeq0.neo360.model.Worker;
+import com.cmpeq0.neo360.view.vote.*;
+import com.cmpeq0.neo360.view.worker.WorkerView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VoteService {
 
-    private VoteRepository voteRepository;
-    private WorkerRepository workerRepository;
-    private SkillRepository skillRepository;
+    private final VoteRepository voteRepository;
+    private final WorkerRepository workerRepository;
+    private final SkillRepository skillRepository;
 
     public GetTargetsResponse getTargets(GetTargetsRequest request) {
         Worker source = workerRepository.findWorkerByTelegramId(request.getSourceTelegramId());

@@ -1,4 +1,4 @@
-package com.cmpeq0.neo360.assessment;
+package com.cmpeq0.neo360.view.assessment;
 
 import lombok.Data;
 

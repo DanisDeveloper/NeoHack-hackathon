@@ -1,10 +1,13 @@
-package com.cmpeq0.neo360.assessment;
+package com.cmpeq0.neo360.service;
 
 import com.cmpeq0.neo360.dao.AssessmentRepository;
 import com.cmpeq0.neo360.dao.VoteRepository;
 import com.cmpeq0.neo360.dao.WorkerRepository;
 import com.cmpeq0.neo360.model.*;
-import com.cmpeq0.neo360.vote.SkillCalculatorService;
+import com.cmpeq0.neo360.view.assessment.GetWorkerMatrixRequest;
+import com.cmpeq0.neo360.view.assessment.SkillRecordView;
+import com.cmpeq0.neo360.view.assessment.WorkerMatrixResponse;
+import com.cmpeq0.neo360.view.vote.SkillCalculatorService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

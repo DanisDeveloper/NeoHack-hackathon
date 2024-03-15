@@ -1,4 +1,4 @@
-package com.cmpeq0.neo360.vote;
+package com.cmpeq0.neo360.view.vote;
 
 import com.cmpeq0.neo360.dao.VoteRepository;
 import com.cmpeq0.neo360.model.*;
@@ -71,7 +71,6 @@ public class SkillCalculatorService {
                         .level((int)finalScore).assessment(assessment)
                         .build()
                 );
-
             }
         }
         return nextRecords;

@@ -1,4 +1,4 @@
-package com.cmpeq0.neo360.auth;
+package com.cmpeq0.neo360.view.auth;
 
 import com.cmpeq0.neo360.model.Worker;
 import lombok.AllArgsConstructor;
