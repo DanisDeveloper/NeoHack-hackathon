@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateWorkerRequest {
+public class WorkerDataRequest {
 
     private String telegramId;
     private String position;

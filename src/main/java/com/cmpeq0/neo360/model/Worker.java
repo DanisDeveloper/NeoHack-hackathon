@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -43,7 +44,15 @@ public class Worker {
     private List<Worker> colleagues;
 
     @OneToMany
-    private List<SkillRecord> skillRecords;
+    private List<SkillRecord> previousSkillRecords;
+
+    public double getSkillValue(String name) {
+        return previousSkillRecords.stream()
+                .filter(t -> t.getSkill().getName().equals(name))
+                .findAny()
+                .map(SkillRecord::getLevel)
+                .orElse(0);
+    }
 
 
 }

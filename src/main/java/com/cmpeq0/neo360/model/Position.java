@@ -23,21 +23,9 @@ public class Position {
 
     private String name;
 
-    @OneToMany
-    private List<Skill> highPrioritySkill;
+    private double score;
 
     @OneToMany
-    private List<Skill> mediumPrioritySkill;
-
-    @OneToMany
-    private List<Skill> lowPrioritySkill;
-
-    public Map<Skill, Skill.SkillPriority> getSkillPriorities() {
-        Map<Skill, Skill.SkillPriority> result = new HashMap<>();
-        highPrioritySkill.forEach((skill -> result.put(skill, Skill.SkillPriority.HIGH)));
-        mediumPrioritySkill.forEach((skill -> result.put(skill, Skill.SkillPriority.MEDIUM)));
-        lowPrioritySkill.forEach((skill -> result.put(skill, Skill.SkillPriority.LOW)));
-        return result;
-    }
+    private List<SkillRequirement> requirements;
 
 }
