@@ -25,12 +25,12 @@ public class AssessmentController {
         return ResponseEntity.ok(assessmentService.activateNewAssessment());
     }
 
-    @GetMapping("/matrix")
+    @PostMapping("/matrix")
     public ResponseEntity<WorkerMatrixResponse> getWorkerMatrix(@RequestBody GetWorkerMatrixRequest request) {
         return ResponseEntity.ok(assessmentService.assessWorker(request));
     }
 
-    @GetMapping("/old-matrix")
+    @PostMapping("/old-matrix")
     public ResponseEntity<WorkerMatrixResponse> getOldWorkerMatrix(@RequestBody GetWorkerMatrixRequest request) {
         return ResponseEntity.ok(assessmentService.getOldWorkerAssessment(request));
     }

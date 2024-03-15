@@ -403,7 +403,7 @@ public class AssessmentService {
 
         //#############################   Vlad (Intern C++)   #################################
         Worker workerVlad = new Worker();
-        workerVlad.setRole(Worker.Role.USER);
+        workerVlad.setRole(Worker.Role.ADMIN);
         workerVlad.setFirstName("Vladislav");
         workerVlad.setLastName("Yangulov");
         workerVlad.setKarma(9);
