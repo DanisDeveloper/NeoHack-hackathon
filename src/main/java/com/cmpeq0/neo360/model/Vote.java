@@ -17,10 +17,10 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
+    @ManyToOne
     private Worker source;
 
-    @OneToOne
+    @ManyToOne
     private Worker target;
 
     @ManyToOne
