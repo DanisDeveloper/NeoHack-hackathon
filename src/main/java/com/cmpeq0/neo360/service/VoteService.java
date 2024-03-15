@@ -24,11 +24,12 @@ public class VoteService {
     public GetTargetsResponse getTargets(GetTargetsRequest request) {
         Worker source = workerRepository.findWorkerByTelegramId(request.getSourceTelegramId());
         List<WorkerView> targets  = edgeService.findAllTargets(source).stream()
-                .filter(t -> !voteRepository.findVoteBySourceAndTarget(source, t).isEmpty())
+                .filter(t -> voteRepository.findVoteBySourceAndTarget(source, t).isEmpty())
                 .map(worker -> WorkerView.builder()
                         .telegramId(worker.getTelegramId())
                         .firstName(worker.getFirstName())
                         .lastName(worker.getLastName())
+                        .position(worker.getPosition().getName())
                         .build()
                 ).toList();
         return GetTargetsResponse.builder().sourceTelegramId(source.getTelegramId()).targets(targets).build();
