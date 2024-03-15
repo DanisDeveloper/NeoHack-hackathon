@@ -85,4 +85,14 @@ public class WorkerService {
         }
         return result;
     }
+
+    public WorkerView getWorker(String telegramId) {
+        Worker worker = workerRepository.findWorkerByTelegramId(telegramId);
+        return WorkerView.builder()
+                .telegramId(telegramId)
+                .firstName(worker.getFirstName())
+                .lastName(worker.getLastName())
+                .position(worker.getPosition().getName()).build();
+
+    }
 }

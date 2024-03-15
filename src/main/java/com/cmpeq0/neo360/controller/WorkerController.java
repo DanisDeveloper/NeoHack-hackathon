@@ -34,6 +34,11 @@ public class WorkerController {
         return ResponseEntity.ok(service.deleteWorker(request));
     }
 
+    @GetMapping("/{telegramId}")
+    public ResponseEntity<WorkerView> getWorker(@RequestParam String telegramId) {
+        return ResponseEntity.ok(service.getWorker(telegramId));
+    }
+
     @PostMapping("/connection")
     public ResponseEntity<?> addConnection(@RequestBody WorkerConnectionView connectionView) {
         service.connectWorkers(connectionView);
