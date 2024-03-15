@@ -40,7 +40,7 @@ public class VoteService {
         Worker target = workerRepository.findWorkerByTelegramId(request.getTargetTelegramId());
         List<String> skills = target.getPosition().getRequirements().stream()
                 .map(SkillRequirement::getSkill)
-                .filter(s -> voteRepository.findVoteBySourceAndTargetAndTargetSkill(source, target, s) != null)
+                .filter(s -> voteRepository.findVoteBySourceAndTargetAndTargetSkill(source, target, s) == null)
                 .map(Skill::getName)
                 .toList();
 

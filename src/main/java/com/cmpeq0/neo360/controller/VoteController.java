@@ -18,7 +18,7 @@ public class VoteController {
         return ResponseEntity.ok(voteService.getTargets(request));
     }
 
-    @GetMapping("/votable")
+    @PostMapping("/votable")
     public ResponseEntity<WorkerSkillView> getVotableSkills(@RequestBody GetVotableSkillsRequest request) {
         return ResponseEntity.ok(voteService.getVotableSkills(request));
     }
