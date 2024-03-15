@@ -16,12 +16,12 @@ public class PositionController {
 
     private final PositionService service;
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<List<PositionView>> listPositions() {
         return ResponseEntity.ok(service.listPositions());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createPosition(@RequestBody PositionView positionView) {
         service.createPosition(positionView);
         return ResponseEntity.ok().build();
