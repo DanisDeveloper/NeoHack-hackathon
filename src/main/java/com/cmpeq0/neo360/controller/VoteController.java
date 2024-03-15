@@ -4,10 +4,7 @@ import com.cmpeq0.neo360.service.VoteService;
 import com.cmpeq0.neo360.view.vote.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,17 +14,17 @@ public class VoteController {
     private final VoteService voteService;
 
     @GetMapping("/targets")
-    public ResponseEntity<GetTargetsResponse> getVoteTargets(GetTargetsRequest request) {
+    public ResponseEntity<GetTargetsResponse> getVoteTargets(@RequestBody GetTargetsRequest request) {
         return ResponseEntity.ok(voteService.getTargets(request));
     }
 
     @GetMapping("/votable")
-    public ResponseEntity<WorkerSkillView> getVotableSkills(GetVotableSkillsRequest request) {
+    public ResponseEntity<WorkerSkillView> getVotableSkills(@RequestBody GetVotableSkillsRequest request) {
         return ResponseEntity.ok(voteService.getVotableSkills(request));
     }
 
     @PostMapping
-    public ResponseEntity<?> createVote(CreateVoteRequest request) {
+    public ResponseEntity<?> createVote(@RequestBody CreateVoteRequest request) {
         voteService.createVote(request);
         return ResponseEntity.ok().build();
     }

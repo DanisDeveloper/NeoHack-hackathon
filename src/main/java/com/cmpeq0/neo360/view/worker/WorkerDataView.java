@@ -1,13 +1,15 @@
 package com.cmpeq0.neo360.view.worker;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class WorkerDataRequest {
+@Builder
+public class WorkerDataView {
 
     private String telegramId;
     private String position;

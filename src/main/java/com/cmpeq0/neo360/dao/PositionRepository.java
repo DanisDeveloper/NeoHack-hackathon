@@ -9,4 +9,6 @@ public interface PositionRepository extends CrudRepository<Position, Long> {
 
     Position findPositionByName(String name);
 
+    Position deletePositionByName(String name);
+
 }

@@ -36,7 +36,7 @@ public class SkillCalculatorService {
                 .map(SkillRecord::getLevel).reduce(0, Integer::sum);
     }
 
-    public List<SkillRecord> getCurrentSkillMatrix(Assessment assessment, Worker target) {
+    public List<SkillRecord> getCurrentSkillMatrix(Survey assessment, Worker target) {
         List<SkillRecord> nextRecords = new ArrayList<>();
         List<Vote> votes = voteRepository.findVotesByTarget(target);
         Set<Skill> used = new HashSet<>();
@@ -68,7 +68,7 @@ public class SkillCalculatorService {
 
                 nextRecords.add(SkillRecord.builder()
                         .skill(currentSkill)
-                        .level((int)finalScore).assessment(assessment)
+                        .level((int)finalScore).survey(assessment)
                         .build()
                 );
             }

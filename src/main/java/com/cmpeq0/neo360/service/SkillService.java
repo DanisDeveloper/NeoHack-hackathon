@@ -11,6 +11,8 @@ import com.cmpeq0.neo360.view.skill.SkillView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SkillService {
@@ -52,6 +54,12 @@ public class SkillService {
         worker.getPreviousSkillRecords().stream()
                 .filter(x -> x.getSkill().getName().equals(skill.getName()))
                 .findAny().ifPresent(skillRecordRepository::delete);
+    }
+
+    public List<SkillView> listSkills() {
+        List<Skill> skills = (List<Skill>) skillRepository.findAll();
+        return skills.stream().map(skill ->
+                SkillView.builder().name(skill.getName()).build()).toList();
     }
 
 }

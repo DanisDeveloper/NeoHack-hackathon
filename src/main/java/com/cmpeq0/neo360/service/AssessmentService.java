@@ -23,7 +23,7 @@ import java.util.Map;
 public class AssessmentService {
 
     @Getter
-    private Assessment currentAssessment;
+    private Survey currentAssessment;
 
     private final WorkerRepository workerRepository;
     private final AssessmentRepository assessmentRepository;
@@ -31,7 +31,12 @@ public class AssessmentService {
     private final VoteRepository voteRepository;
 
     public void closeCurrentAssessment() {
-        currentAssessment.setEnd(LocalDateTime.now());
+        if (currentAssessment == null) {
+            currentAssessment = new Survey();
+            currentAssessment.setStartDate(LocalDateTime.now());
+            currentAssessment.setEndDate(LocalDateTime.now());
+        }
+        currentAssessment.setEndDate(LocalDateTime.now());
         assessmentRepository.save(currentAssessment);
         for (Worker worker : workerRepository.findAll()) {
             List<SkillRecord> nextRecords = skillCalculatorService.getCurrentSkillMatrix(currentAssessment, worker);
@@ -40,9 +45,9 @@ public class AssessmentService {
         }
     }
 
-    public Assessment activateNewAssessment() {
+    public Survey activateNewAssessment() {
         closeCurrentAssessment();
-        currentAssessment = assessmentRepository.save(Assessment.builder().start(LocalDateTime.now()).build());
+        currentAssessment = assessmentRepository.save(Survey.builder().startDate(LocalDateTime.now()).build());
         return currentAssessment;
     }
 

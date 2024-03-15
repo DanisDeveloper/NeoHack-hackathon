@@ -21,7 +21,7 @@ public class SkillRecord {
     private Skill skill;
 
     @ManyToOne
-    private Assessment assessment;
+    private Survey survey;
 
     private int level;
 
