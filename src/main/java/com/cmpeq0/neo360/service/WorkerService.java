@@ -1,7 +1,9 @@
 package com.cmpeq0.neo360.service;
 
+import com.cmpeq0.neo360.dao.EdgeRepository;
 import com.cmpeq0.neo360.dao.PositionRepository;
 import com.cmpeq0.neo360.dao.WorkerRepository;
+import com.cmpeq0.neo360.model.Edge;
 import com.cmpeq0.neo360.model.Position;
 import com.cmpeq0.neo360.model.Worker;
 import com.cmpeq0.neo360.view.worker.DeleteWorkerRequest;
@@ -20,6 +22,7 @@ public class WorkerService {
 
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
+    private final EdgeRepository edgeRepository;
 
     public void addWorker(WorkerDataView request) {
         Position position = positionRepository.findPositionByName(request.getPosition());
@@ -52,8 +55,7 @@ public class WorkerService {
     public void connectWorkers(WorkerConnectionView connectionView) {
         var first = workerRepository.findWorkerByTelegramId(connectionView.getFirstTelegramId());
         var second = workerRepository.findWorkerByTelegramId(connectionView.getSecondTelegramId());
-        first.getColleagues().add(second);
-        second.getColleagues().add(first);
+        edgeRepository.save(Edge.builder().source(first).target(second).build());
         workerRepository.save(first);
         workerRepository.save(second);
     }
@@ -61,8 +63,11 @@ public class WorkerService {
     public void removeWorkerConnection(WorkerConnectionView connectionView) {
         var first = workerRepository.findWorkerByTelegramId(connectionView.getFirstTelegramId());
         var second = workerRepository.findWorkerByTelegramId(connectionView.getSecondTelegramId());
-        first.getColleagues().remove(second);
-        second.getColleagues().remove(first);
+        var edge = edgeRepository.findEdgeBySourceAndTarget(first, second);
+        if (edge == null) {
+            edge = edgeRepository.findEdgeBySourceAndTarget(second, first);
+        }
+        edgeRepository.delete(edge);
         workerRepository.save(first);
         workerRepository.save(second);
     }

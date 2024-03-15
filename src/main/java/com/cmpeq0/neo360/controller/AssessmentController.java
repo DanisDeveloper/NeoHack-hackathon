@@ -35,4 +35,10 @@ public class AssessmentController {
         return ResponseEntity.ok(assessmentService.getOldWorkerAssessment(request));
     }
 
+    @PostMapping("/reformat")
+    public ResponseEntity<?> reformat() {
+        assessmentService.rebuild();
+        return ResponseEntity.ok().build();
+    }
+
 }

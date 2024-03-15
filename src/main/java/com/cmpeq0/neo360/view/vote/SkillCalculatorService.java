@@ -2,6 +2,7 @@ package com.cmpeq0.neo360.view.vote;
 
 import com.cmpeq0.neo360.dao.VoteRepository;
 import com.cmpeq0.neo360.model.*;
+import com.cmpeq0.neo360.service.EdgeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,10 @@ import java.util.function.Function;
 public class SkillCalculatorService {
 
     private final VoteRepository voteRepository;
+    private final EdgeService edgeService;
 
     private double calcColleaguesSum(Worker target, Function<Worker, Double> mapper) {
-        return target.getColleagues().stream().map(mapper).reduce(0.0, Double::sum);
+        return edgeService.findAllTargets(target).stream().map(mapper).reduce(0.0, Double::sum);
     }
 
     private double calcPositionSum(Worker target) {
@@ -30,7 +32,7 @@ public class SkillCalculatorService {
     }
 
     private double calcPersonalSkillSum(Worker target, Skill skill) {
-        return (double) target.getColleagues().stream()
+        return (double) edgeService.findAllTargets(target).stream()
                 .flatMap(worker -> worker.getPreviousSkillRecords().stream())
                 .filter(skillRecord -> skillRecord.getSkill().getName().equals(skill.getName()))
                 .map(SkillRecord::getLevel).reduce(0, Integer::sum);

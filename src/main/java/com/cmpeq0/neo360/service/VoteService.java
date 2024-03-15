@@ -1,12 +1,10 @@
 package com.cmpeq0.neo360.service;
 
+import com.cmpeq0.neo360.dao.EdgeRepository;
 import com.cmpeq0.neo360.dao.SkillRepository;
 import com.cmpeq0.neo360.dao.VoteRepository;
 import com.cmpeq0.neo360.dao.WorkerRepository;
-import com.cmpeq0.neo360.model.Skill;
-import com.cmpeq0.neo360.model.SkillRequirement;
-import com.cmpeq0.neo360.model.Vote;
-import com.cmpeq0.neo360.model.Worker;
+import com.cmpeq0.neo360.model.*;
 import com.cmpeq0.neo360.view.vote.*;
 import com.cmpeq0.neo360.view.worker.WorkerView;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +19,11 @@ public class VoteService {
     private final VoteRepository voteRepository;
     private final WorkerRepository workerRepository;
     private final SkillRepository skillRepository;
+    private final EdgeService edgeService;
 
     public GetTargetsResponse getTargets(GetTargetsRequest request) {
         Worker source = workerRepository.findWorkerByTelegramId(request.getSourceTelegramId());
-        List<WorkerView> targets  = source.getColleagues().stream()
+        List<WorkerView> targets  = edgeService.findAllTargets(source).stream()
                 .filter(t -> !voteRepository.findVoteBySourceAndTarget(source, t).isEmpty())
                 .map(worker -> WorkerView.builder()
                         .telegramId(worker.getTelegramId())

@@ -40,9 +40,6 @@ public class Worker {
     @Enumerated
     private Role role;
 
-    @ManyToMany
-    private List<Worker> colleagues;
-
     @OneToMany
     private List<SkillRecord> previousSkillRecords;
 
