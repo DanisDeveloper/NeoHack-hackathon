@@ -13,7 +13,7 @@ public class VoteController {
 
     private final VoteService voteService;
 
-    @GetMapping("/targets")
+    @PostMapping("/targets")
     public ResponseEntity<GetTargetsResponse> getVoteTargets(@RequestBody GetTargetsRequest request) {
         return ResponseEntity.ok(voteService.getTargets(request));
     }
