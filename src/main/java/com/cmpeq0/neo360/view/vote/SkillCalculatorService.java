@@ -1,6 +1,5 @@
 package com.cmpeq0.neo360.vote;
 
-import com.cmpeq0.neo360.assessment.AssessmentService;
 import com.cmpeq0.neo360.dao.VoteRepository;
 import com.cmpeq0.neo360.model.*;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
