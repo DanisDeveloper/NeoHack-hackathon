@@ -4,11 +4,14 @@ import requests
 import json
 # Переменные среды или файл конфигурации для хранения токена
 
+TOKEN = ""
+BASE_URL = ""
 with open('config.json', 'r') as conf:
     data = json.load(conf)
     TOKEN = data["TOKEN"]
     BASE_URL = data["BASE_URL"]
 
+response = requests.post(f"{BASE_URL}/api/v1/assessment/reformat")
 bot = telebot.TeleBot(TOKEN)
 
 def send_score(sourceTelegramId, targetTelegramId, skillName, score):
@@ -23,7 +26,7 @@ def send_score(sourceTelegramId, targetTelegramId, skillName, score):
     #print(f"sended: {sourceTelegramId}, {targetTelegramId}, {skillName}, {score}")
 
 def send_open_assessments():
-    response = requests.post(f"{BASE_URL}/api/v1/assessment/reformat")
+    pass
 
 def send_close_assessments():
     pass
@@ -193,10 +196,15 @@ def callback_query(call):
         username = call.data[len("matrix_"):]
         matrix = get_matrix_by_id(username)
         skills = matrix["skills"]
-        response = f"Информация по сотруднику @{username}."
-        for skill in skills:
-            response += f"\n{skill["name"]} : результат оценки - {skill["level"]}, вердикт - {skill["rating"]}"
-        bot.send_message(call.message.chat.id, response, reply_markup=admin_script())
+        if skills:
+            response = f"Информация по сотруднику @{username}."
+            for skill in skills:
+                response += f"\n{skill["name"]} : результат оценки - {skill["level"]}, вердикт - {skill["rating"]}"
+            bot.send_message(call.message.chat.id, response, reply_markup=admin_script())
+        else:
+            response = f"Нет релевантной информации по сотруднику @{username}."
+            bot.send_message(call.message.chat.id, response, reply_markup=admin_script())
+
 
 
 
