@@ -19,4 +19,4 @@
     2. Backend - Java, Spring
     3. Frontend - Python, telebot
 * [Презентация проекта](./docs/presentation.pdf)
-* [Backend API] (./docs/api.0.0.1.pdf)
+* [Backend API](./docs/api.0.0.1.pdf)
